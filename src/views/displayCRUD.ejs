@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Display CRUD</title>
+    <style>
+      #users {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      #users td,
+      #users th {
+        border: 1px solid #ddd;
+        padding: 8px;
+      }
+
+      #users tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      #users tr:hover {
+        background-color: #ddd;
+      }
+
+      #users th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #04aa6d;
+        color: white;
+      }
+
+      .btn-edit{
+        background-color: orange;
+        outline: none;
+        height: 30px;
+        cursor: pointer;
+        border: none;
+        width: 80px;
+        text-decoration: none;
+      }
+
+      .btn-delete{
+        background-color: red;
+        outline: none;
+        height: 25px;
+        border-radius: 12px;
+        cursor: pointer;
+        border: none;
+        width: 64px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <table id="users">
+      <thead>
+        <tr>
+          <th>FirstName</th>
+          <th>LastName</th>
+          <th>Email</th>
+          <th>Address</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <% for(let i=0; i<data.length; i++) {%>
+            <tr>
+              <td>
+                <%= data[i].firstName%>
+              </td>
+              <td>
+                <%= data[i].lastName%>
+              </td>
+              <td>
+                <%= data[i].email%>
+              </td>
+              <td>
+                <%= data[i].address%>
+              </td>
+              <td>
+                <a href="/edit-crud?id=<%=data[i].id%>" class="btn-edit" type="button">Edit</a>
+                <a href="/delete-crud?id=<%=data[i].id%>" class="btn-delete" type="button">Delete</a>
+              </td>
+            </tr>
+         <% } %>       
+        </tr>
+      </tbody>
+    </table>
+
+    <form action="/crud" method="get" class="ms-4">
+      <button type="submit" class="btn btn-primary mt-3">Create New User</button>
+    </form>
+    
+  </body>
+</html>
